@@ -139,3 +139,13 @@ resource "aws_s3_bucket" "logs" {
     yor_trace            = "01946fe9-aae2-4c99-a975-e9b0d3a4696c"
   })
 }
+
+# Laboratorio 24.2: bloqueo de acceso público para el bucket data
+resource "aws_s3_bucket_public_access_block" "data_protection" {
+  bucket = aws_s3_bucket.data.id
+
+  block_public_acls       = true
+  ignore_public_acls      = true
+  block_public_policy     = true
+  restrict_public_buckets = true
+}
